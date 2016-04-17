@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yfhl.tiyan.business.project.dao.ProInfoMapper">
+     <resultMap id="BaseResultMap" type="com.yfhl.tiyan.business.project.bean.ProInfo" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="url" property="url" jdbcType="VARCHAR" />
+        <result column="describe" property="describe" jdbcType="VARCHAR" />
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+        <result column="create_ip" property="createIp" jdbcType="VARCHAR" />
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+        <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+        <result column="update_ip" property="updateIp" jdbcType="VARCHAR" />
+        <result column="videoUrl" property="videourl" jdbcType="VARCHAR" />
+        <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+        <result column="imageurl" property="imageurl" jdbcType="VARCHAR" />
+        <result column="dic_itemId" property="dicItemid" jdbcType="INTEGER" />
+        <result column="order_num" property="orderNum" jdbcType="INTEGER" />
+      </resultMap>
+      <sql id="Base_Column_List" >
+        id, name, url, describe, create_date, create_by, create_ip, update_date, update_by, 
+        update_ip, videoUrl, del_flag, imageurl, dic_itemId, order_num
+      </sql>
+	<select id="queryProInfoByParams" resultType="map" parameterType="int">
+		select pf.* from t_pro_info pf
+		inner join t_dic_item dt on dt.id = pf.dic_itemId
+		INNER JOIN t_dic_base db on db.id = dt.base_id and db.id = 1
+		WHERE 1=1
+		<if test="itemId != null">
+			and dt.id = #{itemId}		
+		</if>
+	</select>
+  
+    <select id="queryPageTest" resultType="map" parameterType="int">
+        select pf.* from t_pro_info pf
+		inner join t_dic_item dt on dt.id = pf.dic_itemId
+		INNER JOIN t_dic_base db on db.id = dt.base_id and db.id = 1
+		WHERE 1=1
+		<if test="itemId != null">
+			and dt.id = #{itemId}		
+		</if>
+    </select>
+    <select id="queryPageProInfoByParams" resultType="map" parameterType="map">
+        select pf.* from t_pro_info pf
+        inner join t_dic_item dt on dt.id = pf.dic_itemId
+        INNER JOIN t_dic_base db on db.id = dt.base_id and db.id = 1
+        WHERE 1=1
+        <if test="itemId != null">
+          and dt.id = #{itemId}   
+        </if>
+        <if test="name != null">
+            and pf.name like CONCAT(CONCAT('%', #{name}),'%')
+        </if>
+        order by create_date desc
+        limit #{start,jdbcType=INTEGER},#{end,jdbcType=INTEGER}
+  </select>
+    <select id="getCount" resultType="int">
+        select count(pf.id) from t_pro_info pf
+        inner join t_dic_item dt on dt.id = pf.dic_itemId
+        INNER JOIN t_dic_base db on db.id = dt.base_id and db.id = 1
+         <if test="name != null">
+            and pf.name like CONCAT(CONCAT('%', #{name}),'%')
+        </if>
+    </select>
+</mapper>
