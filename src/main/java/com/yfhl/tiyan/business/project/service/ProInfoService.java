@@ -28,4 +28,16 @@ public class ProInfoService extends BaseService{
 		page.setTotalRecordes(totalRecordes);
 		return page;
 	}
+	@SuppressWarnings("unchecked")
+	public PageBean queryPageTest(Integer pageNo,Integer pageSize,String name){
+		PageBean page = new PageBean(pageNo,pageSize);
+		Map map = new HashMap();
+		map.put("start",page.getStrart());
+		map.put("end", page.getPageSize());
+		map.put("name", name);
+		List<ProInfo> list = proInfoMapper.queryPageTest(map);
+//		page.setList(list);
+//		page.setTotalRecordes(totalRecordes);
+		return page;
+	}
 }

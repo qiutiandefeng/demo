@@ -6,9 +6,10 @@
 <html>
   <head>
     <title>测试-首页</title>
+    <link href="${ctx}/plugins/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <script type="text/javascript" src="${ctx}/plugins/bootstrap/assets/js/vendor/jquery.min.js"></script>
     <script type="text/javascript" src="${ctx}/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="${ctx}/plugins/bootstrap/dist/css/bootstrap.css"></script>
+    <script type="text/javascript" s></script>
   </head>
   <body>
   		<center>

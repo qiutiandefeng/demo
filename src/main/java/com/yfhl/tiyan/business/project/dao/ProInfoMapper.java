@@ -20,7 +20,7 @@ public interface ProInfoMapper extends BaseMapper {
 	 * @param map
 	 * @return
 	 */
-	List<Map<String,Object>> queryPageTest(Map<String,Object> map);
+	List<ProInfo> queryPageTest(Map<String,Object> map);
 	/***
 	 * 查询信息-分页
 	 * @param map
@@ -33,4 +33,5 @@ public interface ProInfoMapper extends BaseMapper {
 	 * @return
 	 */
 	public int getCount(Map<String,Object> map);
+	
 }

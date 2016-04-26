@@ -32,7 +32,7 @@
 		</if>
 	</select>
   
-    <select id="queryPageTest" resultType="map" parameterType="int">
+    <select id="queryPageTest" resultMap ="BaseResultMap" parameterType="int">
         select pf.* from t_pro_info pf
 		inner join t_dic_item dt on dt.id = pf.dic_itemId
 		INNER JOIN t_dic_base db on db.id = dt.base_id and db.id = 1
@@ -41,7 +41,7 @@
 			and dt.id = #{itemId}		
 		</if>
     </select>
-    <select id="queryPageProInfoByParams" resultType="map" parameterType="map">
+    <select id="queryPageProInfoByParams" resultMap ="BaseResultMap" parameterType="map">
         select pf.* from t_pro_info pf
         inner join t_dic_item dt on dt.id = pf.dic_itemId
         INNER JOIN t_dic_base db on db.id = dt.base_id and db.id = 1
